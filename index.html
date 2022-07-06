@@ -1,0 +1,831 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <title>Energy projects under the Chinese-Pakistan Economic Corridor (CPEC)</title>
+  <meta name="description" content="Energy projects under the Chinese-Pakistan Economic Corridor (CPEC)">
+  <meta name="author" content="Julia Janicki">
+  <link rel="shortcut icon" href="#">
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700&display=swap" rel="stylesheet">
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      color: #0C1B34;
+      font-family: 'Work Sans', serif;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 17px;
+      line-height: 25px;
+    }
+
+    h2 {
+      font-size: 15px;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #2dc4b2;
+    }
+
+    .subtitle {
+      font-size: 14px;
+    }
+
+    #console {
+      position: absolute;
+      width: 300px;
+      margin: 10px;
+      padding: 10px 20px 10px 30px;
+      background-color: #F0F0F1;
+      border-radius: 5px;
+      z-index: 15;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 1px 1px 0 rgba(66, 66, 66, 0.08), 0 1px 3px 1px rgba(66, 66, 66, 0.16);
+    }
+
+    .active {
+      transform: translate3d(-280px, 0, 0);
+      transition: 0.3s ease-in-out;
+    }
+
+    .itemWrapper {
+      margin-top: -20px;
+    }
+
+    #toggleConsole {
+      position: absolute;
+      right: 5px;
+      top: 0px;
+    }
+
+    #toggleConsole img {
+      width: 16px;
+      opacity: 0.7;
+    }
+
+    #toggleConsole img:hover {
+      opacity: 0.5;
+      transition: all .5s ease;
+      cursor: pointer;
+    }
+
+    .toggle {
+      position: relative;
+      height: 14px;
+      width: 35px;
+      border-radius: 15px;
+      background: #cfcfcf;
+      margin: 8px 0;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 100%;
+      height: 200%;
+      position: absolute;
+      top: -7px;
+      left: 0;
+      z-index: 2;
+      margin: 0
+    }
+
+    .toggle input:nth-child(2):checked {
+      z-index: 1;
+    }
+
+    .toggle__pointer {
+      position: absolute;
+      top: -3.5px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 15px;
+      -webkit-transition: left .15s ease-out;
+      transition: left .15s ease-out;
+    }
+
+    .toggle input:nth-child(2):checked+.toggle__pointer {
+      left: 18px;
+      background-color: #777777;
+    }
+
+    .toggleSeamount {
+      background-color: #41b6c4;
+    }
+
+    .toggleRidges {
+      background-color: #d95f0e;
+    }
+
+    .toggleTrenches {
+      background-color: #dd1c77;
+    }
+
+    .flip {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      opacity: 1;
+    }
+
+    #console h1,
+    #console h2 {
+      text-align: left;
+    }
+
+    .verticalLine {
+      margin-right: 5px;
+      border-right: 0.3px solid #ECE8E1;
+    }
+
+    #title {
+      font-family: 'Enriqueta', serif;
+      color: #0c1b34;
+      font-weight: 700;
+      margin-left: -10px;
+      margin-bottom: 15px;
+    }
+
+    #title a {
+      color: #0c1b34;
+    }
+
+    #title a:hover {
+      color: #D66951;
+      transition: all 1s ease;
+      text-decoration: underline !important;
+    }
+
+    .mapboxgl-popup {
+      max-width: 300px !important;
+      font-family: 'Work Sans', sans-serif;
+      text-align: left;
+      z-index: 20;
+    }
+
+    .mapboxgl-popup-content {
+      font-family: 'Work Sans', sans-serif;
+      padding: 0;
+    }
+
+    .mapboxgl-popup-content-wrapper {
+      padding: 1%;
+    }
+
+    .mapboxgl-popup-content h3 {
+      text-align: left;
+      font-size: 16px;
+      margin: 0;
+      display: block;
+      padding: 15px;
+      font-weight: 700;
+      margin-top: -5px;
+    }
+
+    .mapboxgl-popup.seamount h3 {
+      background: #41b6c4 !important;
+      color: #fff;
+    }
+
+    .mapboxgl-popup.ridge h3 {
+      background: #d95f0e !important;
+      color: #fff;
+    }
+
+    .mapboxgl-popup.trench h3 {
+      background: #dd1c77 !important;
+      color: #fff;
+    }
+
+    .mapboxgl-popup-content h4 {
+      margin: 0;
+      display: block;
+      font-size: 14px;
+      padding: 10px 3px 10px 10px;
+      font-weight: 400;
+    }
+
+    .mapboxgl-container {
+      cursor: pointer;
+    }
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+      margin-top: 3px;
+    }
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
+      border-bottom-color: rgb(61, 59, 59);
+    }
+
+    .mapboxgl-popup-close-button {
+      transform: scale(2);
+      color: white;
+      padding: 0px;
+      margin-right: 10px;
+    }
+
+    .mapboxgl-popup-close-button:hover,
+    .mapboxgl-popup-close-button:active,
+    .mapboxgl-popup-close-button:target {
+      background: none !important;
+      border: none !important;
+      outline: none !important;
+      color: #cfcfcf;
+      transition: all 0.5s ease;
+    }
+
+    .instruction {
+      margin-left: -15px;
+      margin-top: 20px;
+    }
+
+    .instruction p {
+      color: #4159A8;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .button {
+      margin-bottom: 10px;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      background-color: none;
+      max-width: 200px;
+      text-align: center;
+      -webkit-transition: all .5s ease;
+      -moz-transition: all .5s ease;
+      -ms-transition: all .5s ease;
+      transition: all .5s ease;
+      padding: 10px;
+    }
+
+
+    .button:hover {
+      cursor: pointer;
+      -webkit-transition: all .5s ease;
+      -moz-transition: all .5s ease;
+      -ms-transition: all .5s ease;
+      transition: all .5s ease;
+    }
+
+    a:hover {
+      text-decoration: none !important;
+    }
+
+    .item {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    #loading {
+      top: 0;
+      left: 0;
+      position: fixed;
+      display: block;
+      opacity: .7;
+      background-color: #fff;
+      z-index: 99;
+    }
+
+    #loading-image {
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: calc(50vh - 80px);
+      z-index: 100;
+    }
+
+    #loading {
+      width: 100%;
+      text-align: center;
+      height: 100%;
+    }
+
+    #logo {
+      position: absolute;
+      bottom: 22px;
+      right: 0px;
+      z-index: 5;
+    }
+
+    #logo img {
+      width: 120px;
+    }
+
+    @media screen and (max-width: 800px) {
+
+      #console {
+        width: 250px;
+      }
+
+      .active {
+        transform: translate3d(-230px, 0, 0);
+      }
+
+      h1 {
+        font-size: 16px;
+      }
+
+      h2 {
+        font-size: 12px;
+      }
+
+      #console {
+        padding: 10px 20px;
+      }
+
+      #title {
+        margin-top: -10px;
+      }
+
+      .mapboxgl-popup {
+        max-width: 250px !important;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      body {
+        font-size: 11px !important;
+      }
+
+      #title {
+        font-size: 13px;
+      }
+
+      .subtitle {
+        font-size: 12px;
+      }
+
+      .active {
+        transform: translate3d(-230px, 0, 0);
+      }
+
+      h1 {
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 12px;
+      }
+
+      .instruction p {
+        font-size: 10px;
+      }
+
+      .mapboxgl-popup {
+        transform: none !important;
+        top: 20px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-center .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip,
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        display: none !important;
+      }
+
+      #logo {
+        position: absolute;
+        bottom: 15px;
+        right: 0px;
+      }
+
+      #logo img {
+        width: 100px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id='map'></div>
+  <div id='logo'>
+    <img src="./img/logo.png" />
+  </div>
+  <div id='console'>
+    <div class="verticalLine">
+      <span id="toggleConsole">
+        <img src="./img/toggle.png" />
+      </span>
+      <h1 id='title'>Sea floor</h1>
+      <div class='row itemWrapper'>
+        <h2 class="subtitle"> Feature type </h2>
+      </div>
+      <div class="itemWrapper">
+        <div class='row toggle item filters' id="seamountFilter">
+          <input id='' type="radio" value="seamountOn" name="toggle" checked='checked'>
+          <input id='' type="radio" value="seamountOff" name="toggle">
+          <div class="toggle__pointer toggleSeamount"></div>
+        </div>
+        <div class="item">
+          <h2>Seamounts</h2>
+        </div>
+      </div>
+      <div class="itemWrapper">
+        <div class='row toggle item filters' id="ridgesFilter">
+          <input id='' type="radio" value="ridgesOn" name="toggleRidges" checked='checked'>
+          <input id='' type="radio" value="ridgesOff" name="toggleRidges">
+          <div class="toggle__pointer toggleRidges"></div>
+        </div>
+        <div class="item">
+          <h2>Ridges</h2>
+        </div>
+      </div>
+      <div class="itemWrapper">
+        <div class='row toggle item filters' id="trenchesFilter">
+          <input id='' type="radio" value="trenchesOn" name="toggleTrenches" checked='checked'>
+          <input id='' type="radio" value="trenchesOff" name="toggleTrenches">
+          <div class="toggle__pointer toggleTrenches"></div>
+        </div>
+        <div class="item">
+          <h2>Trenches</h2>
+        </div>
+      </div>
+
+      <div class="instruction itemWrapper" id="instruction">
+        <p class="item">Click on the circles for more information</p>
+      </div>
+    </div>
+    <!-- end line -->
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.14.2/d3.js"></script>
+  <script src="data/seamount.js"></script>
+  <script src="data/ridges_lines.js"></script>
+  <script src="data/ridges_points.js"></script>
+  <script src="data/trenches.js"></script>
+  <script>
+
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    var mobile = false;
+    var iphone = false;
+    var safari = false;
+
+    $(window).resize(function () {
+      if (windowWidth != $(window).width() || windowHeight != $(window).height()) {
+        location.reload();
+        return;
+      }
+    });
+
+    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || viewportWidth < 600) {
+      mobile = true;
+    }
+
+    if (/iPhone/i.test(navigator.userAgent)) {
+      iphone = true;
+    }
+
+    //if Safari
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('safari') != -1) {
+      if (ua.indexOf('chrome') > -1) { // Chrome
+      } else {// Safari
+        safari = true;
+      }
+    }
+
+    if (viewportWidth < 700) {
+      $("#instruction").css("display", "none");
+    } else {
+      $("#instruction").css("display", "inherit");
+    }
+
+    let legendShow = false;
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoidGhldGhpcmRwb2xlIiwiYSI6ImNLSWVDcWsifQ.vVx5f1hjIvHBeSpaY3NUkQ';
+
+    let map;
+
+    const seamountData = {
+      'type': 'FeatureCollection',
+      'features': [
+      ]
+    };
+
+    const ridgesLineData = {
+      'type': 'FeatureCollection',
+      'features': [
+      ]
+    };
+
+    const ridgesPointData = {
+      'type': 'FeatureCollection',
+      'features': [
+      ]
+    };
+
+    const trenchData = {
+      'type': 'FeatureCollection',
+      'features': [
+      ]
+    };
+
+
+    if (mobile) {
+
+      map = new mapboxgl.Map({
+        container: 'map', // container element id
+        style: 'mapbox://styles/jhjanicki/cl3xt7dgs000415mylif9a5g7',
+        center: [169.405272, 3.257067], // initial map center in [lon, lat]
+        zoom: 4,
+        minZoom: 3
+      });
+
+    } else {
+
+      map = new mapboxgl.Map({
+        container: 'map', // container element id
+        style: 'mapbox://styles/jhjanicki/cl3xt7dgs000415mylif9a5g7',
+        center: [169.053104, -7.789556], // initial map center in [lon, lat]
+        zoom: 2,
+        minZoom: 1
+      });
+
+    }
+
+    let consoleHeight = $("#console").height() / 2;
+    $("#toggleConsole").css("top", consoleHeight);
+
+    map.on('load', function () {
+      init();
+      $("#toggleConsole").click(function () {
+        $("#console").toggleClass("active");
+        $("#toggleConsole img").toggleClass("flip");
+      });
+    });
+
+    if (!mobile) {
+      map.addControl(new mapboxgl.NavigationControl());
+    }
+
+
+    function addPointData(originalData, newData, height, depth, biodiversity) {
+      originalData.forEach(function (row) {
+        const feature =
+        {
+          'type': 'Feature',
+          'properties': {
+            'longitude': +row.Longitude,
+            'latitude': +row.Latitude,
+            'period_of_formation': row.Period_of_formation,
+            'name': row.Name,
+            'type': row.Type,
+            'length1': row.Length,
+            'height': height ? row.Height : '',
+            'depth': depth ? row.Depth : '',
+            'description': row.Description,
+            'biodiversity': biodiversity ? row.Biodiversity : ''
+          },
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [+row.Longitude, +row.Latitude],
+          }
+        };
+        newData['features'].push(feature);
+      });
+    }
+
+    function addLineData(originalData, newData) {
+
+      originalData.forEach(function (row) {
+
+        const feature =
+        {
+          'type': 'Feature',
+          'properties': {
+            'longitude1': +row.longitude1,
+            'latitude1': +row.latitude1,
+            'longitude2': +row.longitude2,
+            'latitude2': +row.latitude2,
+            'name': row.Name,
+            'period_of_formation': row.Period_of_formation,
+            'length1': row.Length,
+            'height': row.Height,
+            'description': row.Description
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [[+row.longitude1, +row.latitude1], [+row.longitude2, +row.latitude2]]
+          }
+        };
+        newData['features'].push(feature);
+      });
+    }
+
+    function addPointLayer(id, data, color) {
+
+      map.addLayer({
+        id: id,
+        type: 'circle',
+        source: {
+          type: 'geojson',
+          data: data
+        },
+        paint: {
+          "circle-color": color,
+          "circle-stroke-color": "#000000",
+          "circle-stroke-width": 1,
+          'circle-radius': 5,
+          'circle-opacity': 1
+        }
+      });
+
+    }
+
+    function init() {
+
+      $('#loading').hide();
+
+      addPointData(seamounts, seamountData, true, false, true);
+      addPointData(trenches, trenchData, false, true, true);
+      addPointData(ridges_points, ridgesPointData, true, false, false);
+      addLineData(ridges_lines, ridgesLineData);
+
+      addPointLayer('seamountLayer', seamountData, "#41b6c4");
+      addPointLayer('ridgesPointLayer', ridgesPointData, "#d95f0e");
+      addPointLayer('trenchLayer', trenchData, "#dd1c77");
+
+
+      map.addLayer({
+        id: 'ridgesLineLayer',
+        type: 'line',
+        source: {
+          type: 'geojson',
+          data: ridgesLineData
+        },
+        paint: {
+          "line-color": "#d95f0e",
+          'line-width': 4,
+          'line-opacity': 1
+        }
+      });
+
+
+      document.getElementById('seamountFilter').addEventListener('change', function (e) {
+        if (e.target.value === 'seamountOn') {
+          map.setPaintProperty('seamountLayer', 'circle-radius', 5);
+          map.setPaintProperty('seamountLayer', 'circle-opacity', 1);
+          map.setPaintProperty('seamountLayer', 'circle-stroke-width', 1);
+        } else {
+          map.setPaintProperty('seamountLayer', 'circle-radius', 0);
+          map.setPaintProperty('seamountLayer', 'circle-opacity', 0);
+          map.setPaintProperty('seamountLayer', 'circle-stroke-width', 0);
+        }
+      });
+
+      document.getElementById('trenchesFilter').addEventListener('change', function (e) {
+        if (e.target.value === 'trenchesOn') {
+          map.setPaintProperty('trenchLayer', 'circle-radius', 5);
+          map.setPaintProperty('trenchLayer', 'circle-opacity', 1);
+          map.setPaintProperty('trenchLayer', 'circle-stroke-width', 1);
+        } else {
+          map.setPaintProperty('trenchLayer', 'circle-radius', 0);
+          map.setPaintProperty('trenchLayer', 'circle-opacity', 0);
+          map.setPaintProperty('trenchLayer', 'circle-stroke-width', 0);
+        }
+      });
+
+      document.getElementById('ridgesFilter').addEventListener('change', function (e) {
+        if (e.target.value === 'ridgesOn') {
+          map.setPaintProperty('ridgesPointLayer', 'circle-radius', 5);
+          map.setPaintProperty('ridgesPointLayer', 'circle-opacity', 1);
+          map.setPaintProperty('ridgesPointLayer', 'circle-stroke-width', 1);
+
+          map.setPaintProperty('ridgesLineLayer', 'line-width', 1);
+          map.setPaintProperty('ridgesLineLayer', 'line-width', 4);
+        } else {
+          map.setPaintProperty('ridgesPointLayer', 'circle-radius', 0);
+          map.setPaintProperty('ridgesPointLayer', 'circle-opacity', 0);
+          map.setPaintProperty('ridgesPointLayer', 'circle-stroke-width', 0);
+
+          map.setPaintProperty('ridgesLineLayer', 'line-width', 0);
+          map.setPaintProperty('ridgesLineLayer', 'line-width', 0);
+        }
+      });
+
+
+      function clickPointLayer(layer, className, heightBool, depthBool, biodiversityBool, seamountBool) {
+
+        map.on('click', layer, function (e) {
+          map.getCanvas().style.cursor = 'pointer';
+          var latitude = e.features[0].properties.latitude;
+          var longitude = e.features[0].properties.longitude;
+          var period_of_formation = e.features[0].properties.period_of_formation;
+          var name = e.features[0].properties.name;
+          var type = e.features[0].properties.type;
+          var length = e.features[0].properties.length1;
+          var height = heightBool ? e.features[0].properties.height : '';
+          var depth = depthBool ? e.features[0].properties.depth : '';
+          var biodiversity = biodiversityBool ? e.features[0].properties.biodiversity : '';
+          var description = e.features[0].properties.description;
+
+          while (Math.abs(e.lngLat.lng - latitude) > 180) {
+            latitude += e.lngLat.lng > latitude ? 360 : -360;
+          }
+
+          let popupContent = ''
+
+          if (seamountBool) {
+            popupContent = `<h3 class="popupTitle">${name}</h3>
+            <h4><b> Length: </b>:${length}</h4>
+            <h4><b> Height: </b>:${height}</h4>
+            <h4><b> Period of formation: </b>:${period_of_formation}</h4>
+            <h4><b> Description: </b>${description}</h4>
+            <h4><b> Biodiversity: </b>${biodiversity}</h4>`
+          } else {
+            popupContent = `<h3 class="popupTitle">${name}</h3>
+            <h4><b> Length: </b>${length}</h4>
+            <h4><b> Depth: </b>${depth}</h4>
+            <h4><b> Description: </b>${description}</h4>
+            <h4><b> Biodiversity: </b>${biodiversity}</h4>`
+          }
+
+          popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: true, className: className })
+            .setHTML(popupContent)
+            .setLngLat([e.lngLat.lng, e.lngLat.lat])
+            .addTo(map);
+
+        });
+
+      }
+
+      clickPointLayer('seamountLayer', 'seamount', true, false, true, true);
+      clickPointLayer('trenchLayer', 'trench', false, true, true, false);
+
+
+      function clickRidges(layer, line) {
+
+        map.on('click', layer, function (e) {
+          map.getCanvas().style.cursor = 'pointer';
+          var latitude1 = e.features[0].properties.latitude1;
+          var longitude1 = e.features[0].properties.longitude1;
+          var latitude2 = e.features[0].properties.latitude2;
+          var longitude2 = e.features[0].properties.longitude2;
+          var period_of_formation = e.features[0].properties.period_of_formation;
+          var name = e.features[0].properties.name;
+          var length = e.features[0].properties.length1;
+          var height = e.features[0].properties.height;
+
+
+          popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: true, className: 'ridge' })
+            .setHTML('<h3 class="popupTitle">' + name + '</h3>'
+              + '<h4><b> Length: </b>' + length + '</h4>'
+              + '<h4><b> Height: </b>' + height + '</h4>'
+              + '<h4><b> Period of formation: </b>' + period_of_formation + '</h4>'
+              + '<h4><b> Description: </b>' + height + '</h4>')
+            .setLngLat(line ? [longitude2, latitude2] : [e.lngLat.lng, e.lngLat.lat])
+            .addTo(map);
+        });
+
+      }
+
+      clickRidges('ridgesLineLayer', true);
+      clickRidges('ridgesPointLayer', false);
+
+    }
+
+  </script>
+</body>
+<div id="loading">
+  <img id="loading-image" src="./img/load.gif" alt="Loading..." />
+</div>
+
+</html>
