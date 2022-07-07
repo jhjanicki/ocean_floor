@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <title>Energy projects under the Chinese-Pakistan Economic Corridor (CPEC)</title>
-  <meta name="description" content="Energy projects under the Chinese-Pakistan Economic Corridor (CPEC)">
+  <title>Ocean floor</title>
+  <meta name="description" content="Ocean floor">
   <meta name="author" content="Julia Janicki">
   <link rel="shortcut icon" href="#">
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
@@ -138,6 +138,10 @@
       background-color: #dd1c77;
     }
 
+    .toggleCanyons {
+      background-color: #fec44f;
+    }
+
     .flip {
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
@@ -210,6 +214,11 @@
 
     .mapboxgl-popup.trench h3 {
       background: #dd1c77 !important;
+      color: #fff;
+    }
+
+    .mapboxgl-popup.canyon h3 {
+      background: #fec44f !important;
       color: #fff;
     }
 
@@ -473,6 +482,16 @@
           <h2>Trenches</h2>
         </div>
       </div>
+      <div class="itemWrapper">
+        <div class='row toggle item filters' id="canyonsFilter">
+          <input id='' type="radio" value="canyonsOn" name="toggleCanyons" checked='checked'>
+          <input id='' type="radio" value="canyonsOff" name="toggleCanyons">
+          <div class="toggle__pointer toggleCanyons"></div>
+        </div>
+        <div class="item">
+          <h2>Canyons</h2>
+        </div>
+      </div>
 
       <div class="instruction itemWrapper" id="instruction">
         <p class="item">Click on the circles for more information</p>
@@ -487,6 +506,8 @@
   <script src="data/ridges_lines.js"></script>
   <script src="data/ridges_points.js"></script>
   <script src="data/trenches.js"></script>
+  <script src="data/canyons_lines.js"></script>
+  <script src="data/canyons_points.js"></script>
   <script>
 
     var windowWidth = $(window).width();
@@ -558,6 +579,18 @@
       ]
     };
 
+    const canyonsLineData = {
+      'type': 'FeatureCollection',
+      'features': [
+      ]
+    };
+
+    const canyonsPointData = {
+      'type': 'FeatureCollection',
+      'features': [
+      ]
+    };
+
 
     if (mobile) {
 
@@ -574,7 +607,7 @@
       map = new mapboxgl.Map({
         container: 'map', // container element id
         style: 'mapbox://styles/jhjanicki/cl3xt7dgs000415mylif9a5g7',
-        center: [169.053104, -7.789556], // initial map center in [lon, lat]
+        center: [180.053104, -2.789556], // initial map center in [lon, lat]
         zoom: 2,
         minZoom: 1
       });
@@ -623,7 +656,7 @@
       });
     }
 
-    function addLineData(originalData, newData) {
+    function addLineData(originalData, newData, biodiversity) {
 
       originalData.forEach(function (row) {
 
@@ -639,7 +672,8 @@
             'period_of_formation': row.Period_of_formation,
             'length1': row.Length,
             'height': row.Height,
-            'description': row.Description
+            'description': row.Description,
+            'biodiversity': biodiversity ? row.Biodiversity : ''
           },
           'geometry': {
             'type': 'LineString',
@@ -670,6 +704,26 @@
 
     }
 
+    function addLineLayer(id, data, color) {
+      map.addLayer({
+        id: id,
+        type: 'line',
+        source: {
+          type: 'geojson',
+          data: data
+        },
+        paint: {
+          "line-color": color,
+          'line-width': 5,
+          'line-opacity': 1
+        },
+        layout: {
+          'line-cap': 'round',
+          'line-join': 'round'
+        }
+      });
+    }
+
     function init() {
 
       $('#loading').hide();
@@ -677,26 +731,18 @@
       addPointData(seamounts, seamountData, true, false, true);
       addPointData(trenches, trenchData, false, true, true);
       addPointData(ridges_points, ridgesPointData, true, false, false);
-      addLineData(ridges_lines, ridgesLineData);
+      addPointData(canyons_points, canyonsPointData, true, false, false);
+      addLineData(ridges_lines, ridgesLineData, false);
+      addLineData(canyons_lines, canyonsLineData, true);
 
       addPointLayer('seamountLayer', seamountData, "#41b6c4");
       addPointLayer('ridgesPointLayer', ridgesPointData, "#d95f0e");
       addPointLayer('trenchLayer', trenchData, "#dd1c77");
+      addPointLayer('canyonsPointLayer', canyonsPointData, "#fec44f");
 
+      addLineLayer('ridgesLineLayer', ridgesLineData, "#d95f0e");
+      addLineLayer('canyonsLineLayer', canyonsLineData, "#fec44f");
 
-      map.addLayer({
-        id: 'ridgesLineLayer',
-        type: 'line',
-        source: {
-          type: 'geojson',
-          data: ridgesLineData
-        },
-        paint: {
-          "line-color": "#d95f0e",
-          'line-width': 4,
-          'line-opacity': 1
-        }
-      });
 
 
       document.getElementById('seamountFilter').addEventListener('change', function (e) {
@@ -741,8 +787,26 @@
         }
       });
 
+      document.getElementById('canyonsFilter').addEventListener('change', function (e) {
+        if (e.target.value === 'canyonsOn') {
+          map.setPaintProperty('canyonsPointLayer', 'circle-radius', 5);
+          map.setPaintProperty('canyonsPointLayer', 'circle-opacity', 1);
+          map.setPaintProperty('canyonsPointLayer', 'circle-stroke-width', 1);
 
-      function clickPointLayer(layer, className, heightBool, depthBool, biodiversityBool, seamountBool) {
+          map.setPaintProperty('canyonsLineLayer', 'line-width', 1);
+          map.setPaintProperty('canyonsLineLayer', 'line-width', 4);
+        } else {
+          map.setPaintProperty('canyonsPointLayer', 'circle-radius', 0);
+          map.setPaintProperty('canyonsPointLayer', 'circle-opacity', 0);
+          map.setPaintProperty('canyonsPointLayer', 'circle-stroke-width', 0);
+
+          map.setPaintProperty('canyonsLineLayer', 'line-width', 0);
+          map.setPaintProperty('canyonsLineLayer', 'line-width', 0);
+        }
+      });
+
+
+      function clickPointLayer(layer, className, heightBool, depthBool, biodiversityBool) {
 
         map.on('click', layer, function (e) {
           map.getCanvas().style.cursor = 'pointer';
@@ -763,19 +827,25 @@
 
           let popupContent = ''
 
-          if (seamountBool) {
+          if (className === 'seamount') {
             popupContent = `<h3 class="popupTitle">${name}</h3>
-            <h4><b> Length: </b>:${length}</h4>
-            <h4><b> Height: </b>:${height}</h4>
-            <h4><b> Period of formation: </b>:${period_of_formation}</h4>
+            <h4><b> Length: </b>${length}</h4>
+            <h4><b> Height: </b>${height}</h4>
+            <h4><b> Period of formation: </b>${period_of_formation}</h4>
             <h4><b> Description: </b>${description}</h4>
             <h4><b> Biodiversity: </b>${biodiversity}</h4>`
-          } else {
+          } else if (className === 'trench') {
             popupContent = `<h3 class="popupTitle">${name}</h3>
             <h4><b> Length: </b>${length}</h4>
             <h4><b> Depth: </b>${depth}</h4>
             <h4><b> Description: </b>${description}</h4>
             <h4><b> Biodiversity: </b>${biodiversity}</h4>`
+          } else {
+            popupContent = `<h3 class="popupTitle">${name}</h3>
+            <h4><b> Length: </b>${length}</h4>
+            <h4><b> Height: </b>${height}</h4>
+            <h4><b> Period of formation: </b>${period_of_formation}</h4>
+            <h4><b> Description: </b>${description}</h4>`
           }
 
           popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: true, className: className })
@@ -787,11 +857,13 @@
 
       }
 
-      clickPointLayer('seamountLayer', 'seamount', true, false, true, true);
-      clickPointLayer('trenchLayer', 'trench', false, true, true, false);
+      clickPointLayer('seamountLayer', 'seamount', true, false, true);
+      clickPointLayer('trenchLayer', 'trench', false, true, true);
+      clickPointLayer('ridgesPointLayer', 'ridge', true, false, false);
+      clickPointLayer('canyonsPointLayer', 'canyon', true, false, false);
 
 
-      function clickRidges(layer, line) {
+      function clickRidges(layer, classname) {
 
         map.on('click', layer, function (e) {
           map.getCanvas().style.cursor = 'pointer';
@@ -805,20 +877,20 @@
           var height = e.features[0].properties.height;
 
 
-          popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: true, className: 'ridge' })
+          popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: true, className: classname })
             .setHTML('<h3 class="popupTitle">' + name + '</h3>'
               + '<h4><b> Length: </b>' + length + '</h4>'
               + '<h4><b> Height: </b>' + height + '</h4>'
               + '<h4><b> Period of formation: </b>' + period_of_formation + '</h4>'
               + '<h4><b> Description: </b>' + height + '</h4>')
-            .setLngLat(line ? [longitude2, latitude2] : [e.lngLat.lng, e.lngLat.lat])
+            .setLngLat([longitude2, latitude2])
             .addTo(map);
         });
 
       }
 
-      clickRidges('ridgesLineLayer', true);
-      clickRidges('ridgesPointLayer', false);
+      clickRidges('ridgesLineLayer', 'ridge');
+      clickRidges('canyonsLineLayer', 'canyon');
 
     }
 

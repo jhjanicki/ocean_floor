@@ -1,0 +1,80 @@
+const canyons_lines = [
+    {
+       "Name":"Grand Bahama Canyon",
+       "Type":"line",
+       "latitude1":25.5,
+       "longitude1":-77.1667,
+       "latitude2":26.1667,
+       "longitude2":-76.8167,
+       "Period_of_formation":"2.6–11.7 million years ago",
+       "Height":"Walls up to 5km high",
+       "Length":"more than 225km",
+       "Description":"A V-shaped canyon that cuts between the Abaco Islands to the north and Eleuthera Island to the south. It separates the Bahama Banks and forms one of the deepest underwater canyon systems, with a depth of more than 3,000 meters.",
+       "Biodiversity":"The extensive coral reefs around the Grand Bahama bank are populated by eels, clownfish and nurse sharks. The Northwest Providence channel which extends from the canyon is also home to several cetacean species such as bottled-nosed dolphins and sperm whales."
+    },
+    {
+       "Name":"Amazon Canyon",
+       "Type":"line",
+       "latitude1":3.0629,
+       "longitude1":-48.8212,
+       "latitude2":3.6391,
+       "longitude2":-47.7751,
+       "Period_of_formation":"15–16 million years ago",
+       "Height":"not known",
+       "Length":"not known",
+       "Description":"Located in the Atlantic Ocean approximately 322km from the mouth of the Amazon River. It covers an area of 2,250km² and is believed to have formed through underwater landslides, and subsequently evolved through underwater erosion.",
+       "Biodiversity":""
+    },
+    {
+       "Name":"Bering Canyon",
+       "Type":"line",
+       "latitude1":54.0833,
+       "longitude1":-167.9483,
+       "latitude2":56.2817,
+       "longitude2":-160.8117,
+       "Period_of_formation":"5.3–11.7 million years ago",
+       "Height":"Depth: 3,200 metres",
+       "Length":"400km",
+       "Description":"The world's longest known submarine canyon. It extends about 400km across the Bering shelf and slope. It is confined at its eastern edge by the Aleutian Islands.",
+       "Biodiversity":"It is home to invaluable fisheries such as Alaska pollock, salmon and king crab. Seabirds, like albatross and kittiwakes, and marine mammals like orcas, walrus and fur seals also live in the region."
+    },
+    {
+       "Name":"Congo Canyon",
+       "Type":"line",
+       "latitude1":-6.0236,
+       "longitude1":10.9014,
+       "latitude2":-5.7833,
+       "longitude2":12.3402,
+       "Period_of_formation":"2.6 million–11,700 years ago",
+       "Height":"Depth: 1,200 metres, with walls up to 1.1km high",
+       "Length":"800km",
+       "Description":"One of the largest canyons in the world. Its head lies inland on the continent, part way up the Congo Estuary and ends 280km from where it started. Scientists recorded the world's longest-known sediment avalanche along the canyon in 2021.",
+       "Biodiversity":""
+    },
+    {
+       "Name":"Nazaré Canyon",
+       "Type":"line",
+       "latitude1":39.4775,
+       "longitude1":-11,
+       "latitude2":39.8833,
+       "longitude2":-9.2167,
+       "Period_of_formation":"5 million years ago",
+       "Height":"Depth: 5,000 metres",
+       "Length":"230km",
+       "Description":"The largest submarine canyon in Europe, located off the coast of Nazaré, Portugal, in the eastern North Atlantic Ocean. Waves are able to travel at a much greater speed due to this geological fault, arriving at the coast with virtually no dissipation of energy, making Nazaré a hotspot for big wave surfing.",
+       "Biodiversity":""
+    },
+    {
+       "Name":"Zhemchug Canyon",
+       "Type":"line",
+       "latitude1":56.1733,
+       "longitude1":-179.9467,
+       "latitude2":60.7517,
+       "longitude2":-169.6833,
+       "Period_of_formation":"not known",
+       "Height":"Depth: 2,600 metres",
+       "Length":"not known",
+       "Description":"Located in the middle of the Bering Sea, it is the largest submarine canyon in the world, not only due to its great depth, but also its large cross-sectional area.",
+       "Biodiversity":"An important habitat for many species of ocean wildlife: seabirds such as short-tailed albatross; mammals such as northern fur seals, dolphins and many species of whales; and invertebrates such as bubblegum coral, bamboo coral, soft coral, glass sponge, snow crab and bairdi crab."
+    }
+ ];
