@@ -4,21 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <title>Ocean floor</title>
+  <title>Features of the ocean floor</title>
   <meta name="description" content="Ocean floor">
   <meta name="author" content="Julia Janicki">
   <link rel="shortcut icon" href="#">
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700&display=swap" rel="stylesheet">
-  <script src='https://api.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet' />
+  <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
   <style>
     body {
       margin: 0;
       padding: 0;
       color: #0C1B34;
-      font-family: 'Work Sans', serif;
+      font-family: 'Eczar', serif;
     }
 
     #map {
@@ -127,19 +125,19 @@
     }
 
     .toggleSeamount {
-      background-color: #41b6c4;
+      background-color: #189B68;
     }
 
     .toggleRidges {
-      background-color: #d95f0e;
+      background-color: #9573DE;
     }
 
     .toggleTrenches {
-      background-color: #dd1c77;
+      background-color: #E7685A;
     }
 
     .toggleCanyons {
-      background-color: #fec44f;
+      background-color: #FFC554;
     }
 
     .flip {
@@ -159,7 +157,7 @@
     }
 
     #title {
-      font-family: 'Enriqueta', serif;
+      font-family: 'Eczar', serif;
       color: #0c1b34;
       font-weight: 700;
       margin-left: -10px;
@@ -178,13 +176,13 @@
 
     .mapboxgl-popup {
       max-width: 300px !important;
-      font-family: 'Work Sans', sans-serif;
+      font-family: 'Eczar', serif;
       text-align: left;
       z-index: 20;
     }
 
     .mapboxgl-popup-content {
-      font-family: 'Work Sans', sans-serif;
+      font-family: 'Eczar', serif;
       padding: 0;
     }
 
@@ -203,22 +201,22 @@
     }
 
     .mapboxgl-popup.seamount h3 {
-      background: #41b6c4 !important;
+      background: #189B68 !important;
       color: #fff;
     }
 
     .mapboxgl-popup.ridge h3 {
-      background: #d95f0e !important;
+      background: #9573DE !important;
       color: #fff;
     }
 
     .mapboxgl-popup.trench h3 {
-      background: #dd1c77 !important;
+      background: #E7685A !important;
       color: #fff;
     }
 
     .mapboxgl-popup.canyon h3 {
-      background: #fec44f !important;
+      background: #FFC554 !important;
       color: #fff;
     }
 
@@ -448,7 +446,7 @@
       <span id="toggleConsole">
         <img src="./img/toggle.png" />
       </span>
-      <h1 id='title'>Sea floor</h1>
+      <h1 id='title'>Features of the ocean floor</h1>
       <div class='row itemWrapper'>
         <h2 class="subtitle"> Feature type </h2>
       </div>
@@ -502,6 +500,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.14.2/d3.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
   <script src="data/seamount.js"></script>
   <script src="data/ridges_lines.js"></script>
   <script src="data/ridges_points.js"></script>
@@ -591,6 +590,22 @@
       ]
     };
 
+    const multilineStringTest = {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'properties': {
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [[-6, 83.5], [9.85, 85.5], [33.9225, 86.5808], [62.3167, 87.1333], [77.9765, 86.553], [96.9892, 85.6065], [108.1569, 84.7722], [118.5596, 83.6977], [123, 81]],
+          }
+        }
+      ]
+    };
+
+
 
     if (mobile) {
 
@@ -607,9 +622,10 @@
       map = new mapboxgl.Map({
         container: 'map', // container element id
         style: 'mapbox://styles/jhjanicki/cl3xt7dgs000415mylif9a5g7',
-        center: [180.053104, -2.789556], // initial map center in [lon, lat]
+        center: [-78.551954, 4.326720], // initial map center in [lon, lat]
         zoom: 2,
         minZoom: 1
+        // projection: 'globe'
       });
 
     }
@@ -695,9 +711,7 @@
         },
         paint: {
           "circle-color": color,
-          "circle-stroke-color": "#000000",
-          "circle-stroke-width": 1,
-          'circle-radius': 5,
+          'circle-radius': 7,
           'circle-opacity': 1
         }
       });
@@ -735,52 +749,66 @@
       addLineData(ridges_lines, ridgesLineData, false);
       addLineData(canyons_lines, canyonsLineData, true);
 
-      addPointLayer('seamountLayer', seamountData, "#41b6c4");
-      addPointLayer('ridgesPointLayer', ridgesPointData, "#d95f0e");
-      addPointLayer('trenchLayer', trenchData, "#dd1c77");
-      addPointLayer('canyonsPointLayer', canyonsPointData, "#fec44f");
+      addPointLayer('seamountLayer', seamountData, "#189B68");
+      addPointLayer('ridgesPointLayer', ridgesPointData, "#9573DE");
+      addPointLayer('trenchLayer', trenchData, "#E7685A");
+      addPointLayer('canyonsPointLayer', canyonsPointData, "#FFC554");
 
-      addLineLayer('ridgesLineLayer', ridgesLineData, "#d95f0e");
-      addLineLayer('canyonsLineLayer', canyonsLineData, "#fec44f");
+      addLineLayer('ridgesLineLayer', ridgesLineData, "#9573DE");
+      addLineLayer('canyonsLineLayer', canyonsLineData, "#FFC554");
+
+      map.addLayer({
+        id: 'multiline',
+        type: 'line',
+        source: {
+          type: 'geojson',
+          data: multilineStringTest
+        },
+        paint: {
+          "line-color": '#fff7bc',
+          'line-width': 5,
+          'line-opacity': 1
+        },
+        layout: {
+          'line-cap': 'round',
+          'line-join': 'round'
+        }
+      });
+
+      console.log(multilineStringTest)
 
 
 
       document.getElementById('seamountFilter').addEventListener('change', function (e) {
         if (e.target.value === 'seamountOn') {
-          map.setPaintProperty('seamountLayer', 'circle-radius', 5);
+          map.setPaintProperty('seamountLayer', 'circle-radius', 7);
           map.setPaintProperty('seamountLayer', 'circle-opacity', 1);
-          map.setPaintProperty('seamountLayer', 'circle-stroke-width', 1);
         } else {
           map.setPaintProperty('seamountLayer', 'circle-radius', 0);
           map.setPaintProperty('seamountLayer', 'circle-opacity', 0);
-          map.setPaintProperty('seamountLayer', 'circle-stroke-width', 0);
         }
       });
 
       document.getElementById('trenchesFilter').addEventListener('change', function (e) {
         if (e.target.value === 'trenchesOn') {
-          map.setPaintProperty('trenchLayer', 'circle-radius', 5);
+          map.setPaintProperty('trenchLayer', 'circle-radius', 7);
           map.setPaintProperty('trenchLayer', 'circle-opacity', 1);
-          map.setPaintProperty('trenchLayer', 'circle-stroke-width', 1);
         } else {
           map.setPaintProperty('trenchLayer', 'circle-radius', 0);
           map.setPaintProperty('trenchLayer', 'circle-opacity', 0);
-          map.setPaintProperty('trenchLayer', 'circle-stroke-width', 0);
         }
       });
 
       document.getElementById('ridgesFilter').addEventListener('change', function (e) {
         if (e.target.value === 'ridgesOn') {
-          map.setPaintProperty('ridgesPointLayer', 'circle-radius', 5);
+          map.setPaintProperty('ridgesPointLayer', 'circle-radius', 7);
           map.setPaintProperty('ridgesPointLayer', 'circle-opacity', 1);
-          map.setPaintProperty('ridgesPointLayer', 'circle-stroke-width', 1);
 
           map.setPaintProperty('ridgesLineLayer', 'line-width', 1);
           map.setPaintProperty('ridgesLineLayer', 'line-width', 4);
         } else {
           map.setPaintProperty('ridgesPointLayer', 'circle-radius', 0);
           map.setPaintProperty('ridgesPointLayer', 'circle-opacity', 0);
-          map.setPaintProperty('ridgesPointLayer', 'circle-stroke-width', 0);
 
           map.setPaintProperty('ridgesLineLayer', 'line-width', 0);
           map.setPaintProperty('ridgesLineLayer', 'line-width', 0);
@@ -789,16 +817,14 @@
 
       document.getElementById('canyonsFilter').addEventListener('change', function (e) {
         if (e.target.value === 'canyonsOn') {
-          map.setPaintProperty('canyonsPointLayer', 'circle-radius', 5);
+          map.setPaintProperty('canyonsPointLayer', 'circle-radius', 7);
           map.setPaintProperty('canyonsPointLayer', 'circle-opacity', 1);
-          map.setPaintProperty('canyonsPointLayer', 'circle-stroke-width', 1);
 
           map.setPaintProperty('canyonsLineLayer', 'line-width', 1);
           map.setPaintProperty('canyonsLineLayer', 'line-width', 4);
         } else {
           map.setPaintProperty('canyonsPointLayer', 'circle-radius', 0);
           map.setPaintProperty('canyonsPointLayer', 'circle-opacity', 0);
-          map.setPaintProperty('canyonsPointLayer', 'circle-stroke-width', 0);
 
           map.setPaintProperty('canyonsLineLayer', 'line-width', 0);
           map.setPaintProperty('canyonsLineLayer', 'line-width', 0);
@@ -829,23 +855,24 @@
 
           if (className === 'seamount') {
             popupContent = `<h3 class="popupTitle">${name}</h3>
-            <h4><b> Length: </b>${length}</h4>
-            <h4><b> Height: </b>${height}</h4>
-            <h4><b> Period of formation: </b>${period_of_formation}</h4>
-            <h4><b> Description: </b>${description}</h4>
-            <h4><b> Biodiversity: </b>${biodiversity}</h4>`
+            ${length !== 'not known' && length !== '' && length !== 'N/A' ? "<h4><b> Length: </b>" + length + "</h4>" : ""}
+            ${height !== 'not known' && height !== '' && height !== 'N/A' ? "<h4><b> Height: </b>" + height + "</h4>" : ""}
+            ${period_of_formation !== 'not known' && period_of_formation !== '' && period_of_formation !== 'N/A' ? "<h4><b> Period of formation: </b>" + period_of_formation + "</h4>" : ""}
+            ${biodiversity !== 'not known' && biodiversity !== '' && biodiversity !== 'N/A' ? "<h4><b> Biodiversity: </b>" + biodiversity + "</h4>" : ""}`
+              `${description !== 'not known' && description !== '' && description !== 'N/A' ? "<h4><b> Description: </b>" + description + "</h4>" : ""}`
           } else if (className === 'trench') {
             popupContent = `<h3 class="popupTitle">${name}</h3>
-            <h4><b> Length: </b>${length}</h4>
-            <h4><b> Depth: </b>${depth}</h4>
-            <h4><b> Description: </b>${description}</h4>
-            <h4><b> Biodiversity: </b>${biodiversity}</h4>`
+            ${length !== 'not known' && length !== '' && length !== 'N/A' ? "<h4><b> Length: </b>" + length + "</h4>" : ""}
+            ${depth !== 'not known' && depth !== '' && depth !== 'N/A' ? "<h4><b> Depth: </b>" + depth + "</h4>" : ""}
+            ${biodiversity !== 'not known' && biodiversity !== '' && biodiversity !== 'N/A' ? "<h4><b> Biodiversity: </b>" + biodiversity + "</h4>" : ""}`
+              `${description !== 'not known' && description !== '' && description !== 'N/A' ? "<h4><b> Description: </b>" + description + "</h4>" : ""}`
+
           } else {
             popupContent = `<h3 class="popupTitle">${name}</h3>
-            <h4><b> Length: </b>${length}</h4>
-            <h4><b> Height: </b>${height}</h4>
-            <h4><b> Period of formation: </b>${period_of_formation}</h4>
-            <h4><b> Description: </b>${description}</h4>`
+            ${length !== 'not known' && length !== '' && length !== 'N/A' ? "<h4><b> Length: </b>" + length + "</h4>" : ""}
+            ${height !== 'not known' && height !== '' && height !== 'N/A' ? "<h4><b> Height: </b>" + height + "</h4>" : ""}
+            ${period_of_formation !== 'not known' && period_of_formation !== '' && period_of_formation !== 'N/A' ? "<h4><b> Period of formation: </b>" + period_of_formation + "</h4>" : ""}`
+              `${description !== 'not known' && description !== '' && description !== 'N/A' ? "<h4><b> Description: </b>" + description + "</h4>" : ""}`
           }
 
           popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: true, className: className })

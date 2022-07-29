@@ -52,7 +52,7 @@ const seamounts = [
        "Height":"The highest point reaches up to 598m below sea level",
        "Length":"not known",
        "Description":"This underwater mountain was once a volcanic island that reached 400m above sea level. It now sits atop the East Tasman Plateau and was discovered in 1944.",
-       "Biodiversity":"Several kinds of whales, albatrosses and petrels live in and above the water around it. The deepwater seastar Novodinia australis also inhabits the seamount."
+       "Biodiversity":"Several kinds of whales, albatrosses and petrels live in and above the water around it. The deepwater seastar <i>Novodinia australis</i> also inhabits the seamount."
     },
     {
        "Name":"Axial Seamount",
