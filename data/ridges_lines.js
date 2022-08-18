@@ -1,310 +1,464 @@
 const ridges_lines = [
-   {
-      "Name":"Arctic Mid-Ocean Ridge (also known as Gakkel Ridge)",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7819",
-      "latitude1":81,
-      "longitude1":-6,
-      "latitude2":87.1333,
-      "longitude2":123,
-      "Period_of_formation":"1.1 million years ago",
-      "Height":"Depth: 2,600m",
-      "Length":"1,800km",
-      "Description":"This volcanic ridge is formed at a divergent tectonic plate boundary between the North American Plate and the Eurasian Plate. A Soviet Union expedition to the central Arctic first found the ridge in 1948. Its largest volcano erupted approximately 1.1 million years ago.",
-      "":""
-   },
-   {
-      "Name":"Lomonosov Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7814",
-      "latitude1":80.5,
-      "longitude1":-175.92,
-      "latitude2":89,
-      "longitude2":149.5666,
-      "Period_of_formation":"470 million years ago",
-      "Height":"Height: 2,500m",
-      "Length":"1,800km",
-      "Description":"A ridge of continental crust in the Arctic Ocean, located between the New Siberian Islands over the central part of the ocean to Ellesmere Island of the Canadian Arctic Archipelago. It was first discovered by a Soviet expedition in 1948.",
-      "":""
-   },
-   {
-      "Name":"Mendeleev Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7803",
-      "latitude1":76.5,
-      "longitude1":-178.5,
-      "latitude2":84,
-      "longitude2":-176,
-      "Period_of_formation":"125 million years ago",
-      "Height":"Height: 1,000 – 4,000m",
-      "Length":"1,500km",
-      "Description":"A major topographic feature in the Arctic Ocean, attached to the Alpha Ridge of the Amerasian Basin. A Soviet expedition found it and named it after famous Russian chemist Dmitri Mendeleev.",
-      "":""
-   },
-   {
-      "Name":"Aegir Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=4946",
-      "latitude1":64.8333,
-      "longitude1":-6.25,
-      "latitude2":67.5,
-      "longitude2":-2,
-      "Period_of_formation":"56 to 34 million years ago",
-      "Height":"not known",
-      "Length":"not known",
-      "Description":"A no-longer-growing segment of the Mid-Atlantic Ridge in the far-northern Atlantic Ocean. It marks the initial break-up boundary between Greenland and Norway, along which seafloor spreading was initiated at the beginning of the Eocene epoch to form the northern Atlantic Ocean.",
-      "":""
-   },
-   {
-      "Name":"Cayman Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=4601",
-      "latitude1":19,
-      "longitude1":-82.3333,
-      "latitude2":19.8207,
-      "longitude2":-79,
-      "Period_of_formation":"50 million years ago",
-      "Height":"Highest elevation: Caymann Islands, 43m above sea level",
-      "Length":"About 1,500km",
-      "Description":"A volcanic undearsea mountain ridge on the northern margin of the Cayman Trough in the Caribbean Sea. Its only projecting peaks are the Cayman Islands.",
-      "":""
-   },
-   {
-      "Name":"J-Anomaly Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=35592",
-      "latitude1":39.8338,
-      "longitude1":-52.0753,
-      "latitude2":41.169,
-      "longitude2":-49.7699,
-      "Period_of_formation":"145 to 66 million years ago",
-      "Height":"Height: 1,200m",
-      "Length":"400km",
-      "Description":"Extending southwest from the eastern end of the Grand Banks of Newfoundland, the name derives from its being an anomalously thick oceanic crust. A major volcanic pulse during the Cretaceous period created the ridge.",
-      "":""
-   },
-   {
-      "Name":"Kolbeinsey Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=4233",
-      "latitude1":67.3333,
-      "longitude1":-18.5,
-      "latitude2":70.3333,
-      "longitude2":-15.3333,
-      "Period_of_formation":"2.58 to 0.012 million years ago",
-      "Height":"Highest elevation: Kolbeinsey Island, 5m above sea level",
-      "Length":"not known",
-      "Description":"A continuation of the Mid-Atlantic Ridge through the Iceland Sea, which it splits into two parts.",
-      "":""
-   },
-   {
-      "Name":"Southwest Indian Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7288",
-      "latitude1":-54.75,
-      "longitude1":0,
-      "latitude2":-27,
-      "longitude2":66.5,
-      "Period_of_formation":"185 to 180 million years ago",
-      "Height":"The north-western part of the ridge is 2,500–3,000m above the seabed. The south-western part is 4,000–3,000m, and between the middle ridge and the foot of the Prince Edward and Crozet Islands is 500–2,000m.",
-      "Length":"7,700km",
-      "Description":"A mid-ocean ridge sits on the floors of the south-west Indian Ocean and south-east Atlantic Ocean. It separates the Somali Plate to the north from the Antarctic Plate to the south and is characterised by ultra-slow spreading and wide spaces between the seamounts that form it.",
-      "":""
-   },
-   {
-      "Name":"Walvis Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7288",
-      "latitude1":-32.8333,
-      "longitude1":1.75,
-      "latitude2":-23.5,
-      "longitude2":6.3236,
-      "Period_of_formation":"120 million years ago",
-      "Height":"not known",
-      "Length":"More than 3,000km",
-      "Description":"A volcanic ocean ridge in the southern Atlantic Ocean which extends from the Mid-Atlantic Ridge, near Tristan da Cunha and the Gough Islands, to the African coast.",
-      "":""
-   },
-   {
-      "Name":"Carlsberg Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"",
-      "latitude1":2,
-      "longitude1":57.5,
-      "latitude2":10,
-      "longitude2":66.5,
-      "Period_of_formation":"63 million years ago",
-      "Height":"not known",
-      "Length":"not known",
-      "Description":"The northern section of the Central Indian Ridge, a divergent tectonic plate boundary between the African Plate and the Indo-Australian Plate, traversing the western regions of the Indian Ocean. It is seismically active, with a 7.6 earthquake recorded in 2003.",
-      "":""
-   },
-   {
-      "Name":"Central Indian Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"",
-      "latitude1":-25.5,
-      "longitude1":65.1213,
-      "latitude2":-1,
-      "longitude2":70,
-      "Period_of_formation":"38 million years ago",
-      "Height":"not known",
-      "Length":"2,000km",
-      "Description":"A north–south-trending mid-ocean ridge located in the north Indian Ocean between the Carlsberg Ridge and the northern part of the Indian Ocean triple junction.",
-      "":""
-   },
-   {
-      "Name":"Chagos–Laccadive Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"",
-      "latitude1":-9,
-      "longitude1":70.5,
-      "latitude2":13.5,
-      "longitude2":73.2167,
-      "Period_of_formation":"66 million years ago",
-      "Height":"Highest elevation: Lakshadweep archipelago, 5m above sea level",
-      "Length":"2,550km",
-      "Description":"A prominent volcanic ridge and oceanic plateau extending between the Northern and the Central Indian Ocean. Its three above-water parts are the archipelagos of Chagos, Maldives and Lakshadweep.",
-      "":""
-   },
-   {
-      "Name":"Southeast Indian Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"",
-      "latitude1":-62.75,
-      "longitude1":71.5,
-      "latitude2":-26,
-      "longitude2":161,
-      "Period_of_formation":"34 to 23 million years ago",
-      "Height":"not known",
-      "Length":"6,000km",
-      "Description":"The fastest spreading mid-oceanic ridge system in the Indian Ocean. It has formed the plate boundary between the Australian Plate and Antarctic Plate since the Oligocene.",
-      "":""
-   },
-   {
-      "Name":"Carnegie Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"",
-      "latitude1":-1,
-      "longitude1":-89,
-      "latitude2":-1,
-      "longitude2":-82,
-      "Period_of_formation":"20 million years ago",
-      "Height":"not known",
-      "Length":"1,700km",
-      "Description":"An aseismic ridge on the Nazca Plate that is being subducted beneath the South American Plate. It is thought to be a result of the passage of the Nazca Plate over the Galapagos hotspot and was formed about 19.5 million years ago.",
-      "":""
-   },
-   {
-      "Name":"Chile Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"",
-      "latitude1":-45.75,
-      "longitude1":-110,
-      "latitude2":-34.5,
-      "longitude2":-75.8667,
-      "Period_of_formation":"14 million years ago",
-      "Height":"not known",
-      "Length":"550km to 600km",
-      "Description":"Formed by the divergent plate boundary between the Nazca Plate and the Antarctic Plate. The ridge has been spreading  about 6.4–7.0cm per year for the last 5 million years.",
-      "":""
-   },
-   {
-      "Name":"Juan de Fuca Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=6055",
-      "latitude1":44.6686,
-      "longitude1":-130.3294,
-      "latitude2":46.5365,
-      "longitude2":-129.5799,
-      "Period_of_formation":"30 million years ago",
-      "Height":"not known",
-      "Length":"500km",
-      "Description":"A divergent plate boundary located off the coast of the Pacific Northwest region of North America. It separates marks the boundary of Pacific Plate and Juan de Fuca Plate.",
-      "":""
-   },
-   {
-      "Name":"Juan Fernandez Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=15167     https://en.wikipedia.org/wiki/Juan_Fern%C3%A1ndez_Ridge#/media/File:MAGMAARC1.jpg",
-      "latitude1":-34.59,
-      "longitude1":-75.86,
-      "latitude2":-32.65,
-      "longitude2":-81.4,
-      "Period_of_formation":"22 to 37 million years ago",
-      "Height":"Highest elevation: 1,268m",
-      "Length":"not known",
-      "Description":"A volcanic island and seamount chain on the Nazca Plate. The only seamounts that reach the surface are Juan Fernández Islands.",
-      "":""
-   },
-   {
-      "Name":"Lord Howe Rise",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7364",
-      "latitude1":-37,
-      "longitude1":161.5,
-      "latitude2":-24,
-      "longitude2":166,
-      "Period_of_formation":"60 to 80 million years ago",
-      "Height":"750–1,200m below sea level",
-      "Length":"not known",
-      "Description":"A deep sea plateau rifted away from Eastern Australia by a mid-ocean ridge that was active from 80 to 60 million years ago, and now lies 800km offshore from mainland Australia. It is part of Zealandia, a much larger continent that is now mostly submerged.",
-      "":""
-   },
-   {
-      "Name":"Nazca Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7528",
-      "latitude1":-23.3333,
-      "longitude1":-83.1667,
-      "latitude2":-15.25,
-      "longitude2":-76.6667,
-      "Period_of_formation":"23-31 million years ago",
-      "Height":"4,000m below sea level",
-      "Length":"1,100km",
-      "Description":"A ridge on the Nazca Plate off the west coast of South America. This plate and ridge are currently subducting under the South American Plate at a convergent boundary known as the Peru–Chile Trench. The ridge is composed of a thick basaltic ocean crust that is buoyant, resulting in flat slab subduction under Peru.",
-      "":""
-   },
-   {
-      "Name":"Pacific-Antarctic Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7200",
-      "latitude1":-65.4833,
-      "longitude1":-180,
-      "latitude2":-54.5,
-      "longitude2":180,
-      "Period_of_formation":"Not known",
-      "Height":"not known",
-      "Length":"not known",
-      "Description":"A divergent tectonic plate boundary in the South Pacific Ocean, separating the Pacific Plate from the Antarctic Plate.",
-      "":""
-   },
-   {
-      "Name":"Tehuantepec Ridge",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=7463",
-      "latitude1":10.3333,
-      "longitude1":-100.5,
-      "latitude2":14.75,
-      "longitude2":-95.3333,
-      "Period_of_formation":"15 to 26 million years ago",
-      "Height":"not known",
-      "Length":"not known",
-      "Description":"A ridge situated off the west coast of Mexico in the Pacific Ocean. It is the remnant of an old fracture zone and runs from the eastern end of the Clipperton Fracture Zone northeastward toward Mexico into Chiapas and El Chichón until it is subducted into the Middle America Trench.",
-      "":""
-   },
-   {
-      "Name":"South Tasman Rise",
-      "Coordinate type":"line",
-      "Location references for Julia":"https://marineregions.org/gazetteer.php?p=details&id=6978",
-      "latitude1":-49,
-      "longitude1":146,
-      "latitude2":-46,
-      "longitude2":150,
-      "Period_of_formation":"94 million years ago",
-      "Height":"Depth: 1,500m",
-      "Length":"not known",
-      "Description":"A submerged continental fragment situates between Tasmania and Antarctica. The rise is made up of a number of seamounts. Some of their flat summits indicate exposure above the sea surface in the past.",
-      "":"Deepwater fish species such as orange roughy and oreo dory are found in the area of the rise."
-   }
-]
+	{
+	   "Name":"North Weddell Ridge",
+	   "Type":"line",
+	   "Location_references":"http://marineregions.org/mrgid/7592",
+	   "Coordinates":[
+		  [
+			 -20,
+			 -60.25
+		  ],
+		  [
+			 -4.5,
+			 -56
+		  ]
+	   ],
+	   "Period_of_formation":"66 to 56 million years ago",
+	   "Height":"N/A",
+	   "Depth":"N/A",
+	   "Length":"N/A",
+	   "Description":"It forms the boundary between the South America Plate and the Antarctic Plate in the South Atlantic. As a slow-spreading ridge, it has a rough topography and large, wide rifts.",
+	   "Changes_made":"None yet"
+	},
+	{
+	   "Name":"Southwest Indian Ridge",
+	   "Type":"line",
+	   "Location_references":"https://marineregions.org/gazetteer.php?p=details&id=7288",
+	   "Coordinates":[
+		  [
+			 66.5,
+			 -27
+		  ],
+		  [
+			 58.67588,
+			 -31.21494
+		  ],
+		  [
+			 52.47803,
+			 -36.7542
+		  ],
+		  [
+			 48.17323,
+			 -38.10434
+		  ],
+		  [
+			 40.40033,
+			 -42.61882
+		  ],
+		  [
+			 34.3458,
+			 -45.9431
+		  ],
+		  [
+			 32.42275,
+			 -47.22578
+		  ],
+		  [
+			 31.14885,
+			 -48.48738
+		  ],
+		  [
+			 29.35779,
+			 -49.96407
+		  ],
+		  [
+			 27.09948,
+			 -51.82897
+		  ],
+		  [
+			 25.02734,
+			 -53.59102
+		  ],
+		  [
+			 22.0638,
+			 -53.24075
+		  ],
+		  [
+			 19.6255,
+			 -52.76205
+		  ],
+		  [
+			 17.1356,
+			 -52.0768
+		  ],
+		  [
+			 14.5167,
+			 -51.8167
+		  ],
+		  [
+			 11.8413,
+			 -52.00495
+		  ],
+		  [
+			 9.6458,
+			 -53.2348
+		  ],
+		  [
+			 6.95,
+			 -54
+		  ],
+		  [
+			 3.4621,
+			 -54.4449
+		  ],
+		  [
+			 0,
+			 -54.75
+		  ]
+	   ],
+	   "Period_of_formation":"185 to 180 million years ago",
+	   "Height":"The northern part of the ridge rises 2,500-3,000m from the seabed, and the southern part is 4,000-3,000m",
+	   "Depth":"1,000-4,000m",
+	   "Length":"7,700km",
+	   "Description":"A mid-ocean ridge that separates the Somali Plate to the north from the Antarctic Plate to the south and is characterised by ultra-slow spreading and wide spaces between the seamounts that form it.",
+	   "Changes_made":"None yet"
+	},
+	{
+	   "Name":"Central Indian Ridge",
+	   "Type":"line",
+	   "Location_references":"http://marineregions.org/mrgid/7312",
+	   "Coordinates":[
+		  [
+			 67.5,
+			 -1
+		  ],
+		  [
+			 68.70532,
+			 -3.06529
+		  ],
+		  [
+			 68.36218,
+			 -5.60451
+		  ],
+		  [
+			 67.26414,
+			 -8.76139
+		  ],
+		  [
+			 66.4406,
+			 -11.0261
+		  ],
+		  [
+			 66.23472,
+			 -12.87905
+		  ],
+		  [
+			 66.23472,
+			 -15.34965
+		  ],
+		  [
+			 65.12133,
+			 -17.89993
+		  ],
+		  [
+			 65.19397,
+			 -18.57186
+		  ],
+		  [
+			 66.12948,
+			 -20.09693
+		  ],
+		  [
+			 68.1563,
+			 -20.9085
+		  ],
+		  [
+			 69.45165,
+			 -22.3291
+		  ],
+		  [
+			 70,
+			 -25.5
+		  ]
+	   ],
+	   "Period_of_formation":"38 million years ago",
+	   "Height":"N/A",
+	   "Depth":"N/A",
+	   "Length":"2,000km",
+	   "Description":"A mid-ocean ridge located in between the Carlsberg Ridge and the northern part of the Indian Ocean triple junction.",
+	   "Changes_made":"None yet"
+	},
+	{
+	   "Name":"Southeast Indian Ridge",
+	   "Type":"line",
+	   "Location_references":"http://marineregions.org/mrgid/7289",
+	   "Coordinates":[
+		  [
+			 71.5,
+			 -26
+		  ],
+		  [
+			 77.38333,
+			 -31.1
+		  ],
+		  [
+			 77.93333,
+			 -40.03333
+		  ],
+		  [
+			 83.31667,
+			 -42.83333
+		  ],
+		  [
+			 85.78333,
+			 -40.88333
+		  ],
+		  [
+			 102.6,
+			 -48.2
+		  ],
+		  [
+			 114.15,
+			 -50
+		  ],
+		  [
+			 139.46667,
+			 -50.28333
+		  ],
+		  [
+			 156.18333,
+			 -62.75
+		  ],
+		  [
+			 161,
+			 -61.5
+		  ]
+	   ],
+	   "Period_of_formation":"34 to 23 million years ago",
+	   "Height":"N/A",
+	   "Depth":"N/A",
+	   "Length":"6,000km",
+	   "Description":"The fastest spreading mid-ocean ridge in the Indian Ocean. It has formed the boundary between the Australian Plate and Antarctic Plate since the Oligocene epoch.",
+	   "Changes_made":"None yet"
+	},
+	{
+	   "Name":"Juan de Fuca Ridge",
+	   "Type":"line",
+	   "Location_references":"https://marineregions.org/gazetteer.php?p=details&id=6055",
+	   "Coordinates":[
+		  [
+			 -130.32941,
+			 44.66861
+		  ],
+		  [
+			 -130.02008,
+			 45.57875
+		  ],
+		  [
+			 -129.72265,
+			 46.29854
+		  ],
+		  [
+			 -129.57988,
+			 46.53649
+		  ]
+	   ],
+	   "Period_of_formation":"30 million years ago",
+	   "Height":"N/A",
+	   "Depth":"N/A",
+	   "Length":"500km",
+	   "Description":"It separates the Pacific Plate to the west and Juan de Fuca Plate to the east.",
+	   "Changes_made":"None yet"
+	},
+	{
+	   "Name":"Pacific-Antarctic Ridge",
+	   "Type":"line",
+	   "Location_references":"https://marineregions.org/gazetteer.php?p=details&id=7200",
+	   "Coordinates":[[162,-61.5],[165.1284,-62.0578],[168.8022,-62.7842],[171.8276,-63.3478],[175.1771,-64.3491],[177.7163,-65.0883],[180,-65.48314]],
+	   "Period_of_formation":"N/A",
+	   "Height":"N/A",
+	   "Depth":"N/A",
+	   "Length":"N/A",
+	   "Description":"It separates the Pacific Plate from the Antarctic Plate.",
+	   "Changes_made":"None yet"
+	},
+	{
+		"Name":"Pacific-Antarctic Ridge",
+		"Type":"line",
+		"Location_references":"https://marineregions.org/gazetteer.php?p=details&id=7200",
+		"Coordinates":[[-180,-65.48327],[-167.09078,-64.52724],[-156.99406,-61.81337],[-147.7747,-58.06],[-142.2371,-56.2716],[-137.1486,-55.1735],[-130,-54.5]],
+		"Period_of_formation":"N/A",
+		"Height":"N/A",
+		"Depth":"N/A",
+		"Length":"N/A",
+		"Description":"It separates the Pacific Plate from the Antarctic Plate.",
+		"Changes_made":"None yet"
+	 },
+	{
+	   "Name":"Mid-Atlantic Ridge",
+	   "Type":"line",
+	   "Location_references":"http://marineregions.org/mrgid/4568",
+	   "Coordinates":[
+		  [
+			 -33,
+			 52.5
+		  ],
+		  [
+			 -30.55939,
+			 51.60234
+		  ],
+		  [
+			 -28.5333,
+			 50.3667
+		  ],
+		  [
+			 -27.67146,
+			 47.85818
+		  ],
+		  [
+			 -27.28037,
+			 46.74561
+		  ],
+		  [
+			 -28.24102,
+			 44.2543
+		  ],
+		  [
+			 -29.07069,
+			 41.71846
+		  ],
+		  [
+			 -30.1916,
+			 39.47598
+		  ],
+		  [
+			 -32.56763,
+			 37.28401
+		  ],
+		  [
+			 -36.26162,
+			 35.05381
+		  ],
+		  [
+			 -39.33398,
+			 32.51072
+		  ],
+		  [
+			 -43.4,
+			 28.36667
+		  ],
+		  [
+			 -45.44351,
+			 25.20328
+		  ],
+		  [
+			 -46.08897,
+			 22.31241
+		  ],
+		  [
+			 -46.4333,
+			 19.4833
+		  ],
+		  [
+			 -46.51928,
+			 16.64254
+		  ],
+		  [
+			 -45,
+			 14.1333
+		  ],
+		  [
+			 -43.80833,
+			 12.15598
+		  ],
+		  [
+			 -39.95,
+			 8.8167
+		  ],
+		  [
+			 -35.97669,
+			 7.29083
+		  ],
+		  [
+			 -33.09361,
+			 5.82772
+		  ],
+		  [
+			 -31.4154,
+			 3.4964
+		  ],
+		  [
+			 -29,
+			 1.75
+		  ],
+		  [
+			 -21.47372,
+			 -0.3194
+		  ],
+		  [
+			 -14.633,
+			 -2.2
+		  ],
+		  [
+			 -12.333,
+			 -4.8167
+		  ],
+		  [
+			 -13.10394,
+			 -9.59988
+		  ],
+		  [
+			 -13.8833,
+			 -14.36667
+		  ],
+		  [
+			 -12.75404,
+			 -17.48919
+		  ],
+		  [
+			 -11.4667,
+			 -20.9833
+		  ],
+		  [
+			 -14.05,
+			 -25.9167
+		  ],
+		  [
+			 -13.49982,
+			 -29.61157
+		  ],
+		  [
+			 -13.7167,
+			 -33.1667
+		  ],
+		  [
+			 -15.68691,
+			 -34.81402
+		  ],
+		  [
+			 -17.6833,
+			 -36.45
+		  ],
+		  [
+			 -16.45589,
+			 -39.50798
+		  ],
+		  [
+			 -15.7866,
+			 -43.69212
+		  ],
+		  [
+			 -14.9167,
+			 -45.75
+		  ],
+		  [
+			 -11.78936,
+			 -47.9753
+		  ],
+		  [
+			 -6.93358,
+			 -51.24762
+		  ],
+		  [
+			 -1.75,
+			 -54.5
+		  ]
+	   ],
+	   "Period_of_formation":"200 million years ago",
+	   "Height":"About 3,000m from the seabed",
+	   "Depth":"Average of 2,500m",
+	   "Length":"16,000km",
+	   "Description":"Running down the centre of the Atlantic Ocean, it is mostly underwater, with only some parts rising above sea level. In the North Atlantic, it separates the North American Plate from the Eurasian Plate and the African Plate. In the South Atlantic, it separates the African and South American plates.",
+	   "Changes_made":"Coordinates corrected"
+	}
+ ]
