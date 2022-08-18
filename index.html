@@ -132,7 +132,7 @@
     }
 
     .toggleRidges {
-      background-color: #7bccc4;
+      background-color: #6547a4;
     }
 
     .toggleTrenches {
@@ -209,7 +209,7 @@
     }
 
     .mapboxgl-popup.ridge h3 {
-      background: #7bccc4 !important;
+      background: #6547a4 !important;
       color: #fff;
     }
 
@@ -227,7 +227,7 @@
       margin: 0;
       display: block;
       font-size: 14px;
-      padding: 10px 3px 10px 10px;
+      padding: 10px;
       font-weight: 400;
     }
 
@@ -372,7 +372,7 @@
       }
 
       .mapboxgl-popup {
-        max-width: 250px !important;
+        max-width: 290px !important;
       }
     }
 
@@ -407,7 +407,7 @@
 
       .mapboxgl-popup {
         transform: none !important;
-        top: 20px;
+        top: 230px;
         left: 0;
         right: 0;
         margin-left: auto;
@@ -434,6 +434,10 @@
 
       #logo img {
         width: 100px;
+      }
+
+      .mapboxgl-popup-content h4 {
+        font-size: 13px;
       }
     }
   </style>
@@ -524,6 +528,10 @@
     var safari = false;
 
     let popup;
+    let legendShow = false;
+    let map;
+    const featureSize = 7;
+    const featureSizeMobile = 9;
 
     $(window).resize(function () {
       if (windowWidth != $(window).width() || windowHeight != $(window).height()) {
@@ -555,11 +563,7 @@
       $("#instruction").css("display", "inherit");
     }
 
-    let legendShow = false;
-
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhldGhpcmRwb2xlIiwiYSI6ImNLSWVDcWsifQ.vVx5f1hjIvHBeSpaY3NUkQ';
-
-    let map;
 
     const seamountsPointsData = {
       'type': 'FeatureCollection',
@@ -607,7 +611,8 @@
         style: 'mapbox://styles/jhjanicki/cl3xt7dgs000415mylif9a5g7',
         center: [169.405272, 3.257067], // initial map center in [lon, lat]
         zoom: 2,
-        minZoom: 1
+        minZoom: 1,
+        projection: 'globe'
       });
 
     } else {
@@ -690,18 +695,6 @@
       });
     }
 
-    // [
-    //     {
-    //       'type': 'Feature',
-    //       'properties': {
-    //       },
-    //       'geometry': {
-    //         'type': 'LineString',
-    //         'coordinates': [[-6, 83.5], [9.85, 85.5], [33.9225, 86.5808], [62.3167, 87.1333], [77.9765, 86.553], [96.9892, 85.6065], [108.1569, 84.7722], [118.5596, 83.6977], [123, 81]],
-    //       }
-    //     }
-    //   ]
-
     function addPointLayer(id, data, color) {
 
       map.addLayer({
@@ -713,7 +706,7 @@
         },
         paint: {
           "circle-color": color,
-          'circle-radius': 7,
+          'circle-radius': mobile ? featureSizeMobile : featureSize,
           'circle-opacity': 1
         }
       });
@@ -730,7 +723,7 @@
         },
         paint: {
           "line-color": color,
-          'line-width': 7,
+          'line-width': mobile ? featureSizeMobile : featureSize,
           'line-opacity': 1
         },
         layout: {
@@ -755,46 +748,23 @@
 
 
       addPointLayer('seamountsPointsLayer', seamountsPointsData, "#189B68");
-      addPointLayer('ridgesPointsLayer', ridgesPointsData, "#7bccc4");
+      addPointLayer('ridgesPointsLayer', ridgesPointsData, "#6547a4");
 
 
 
       addLineLayer('trenchesLinesLayer', trenchesLinesData, "#E7685A");
       addLineLayer('seamountsLinesLayer', seamountsLinesData, "#189B68");
-
       addLineLayer('canyonsLinesLayer', canyonsLinesData, "#FFC554");
-
-      addLineLayer('ridgesLinesLayer', ridgesLinesData, "#7bccc4");
-
-      // map.addLayer({
-      //   id: 'multiline',
-      //   type: 'line',
-      //   source: {
-      //     type: 'geojson',
-      //     data: multilineStringTest
-      //   },
-      //   paint: {
-      //     "line-color": '#fff7bc',
-      //     'line-width': 5,
-      //     'line-opacity': 1
-      //   },
-      //   layout: {
-      //     'line-cap': 'round',
-      //     'line-join': 'round'
-      //   }
-      // });
-
-      // console.log(multilineStringTest)
-
+      addLineLayer('ridgesLinesLayer', ridgesLinesData, "#6547a4");
 
 
       document.getElementById('seamountFilter').addEventListener('change', function (e) {
-        popup.remove();
+        if (popup) { popup.remove(); }
         if (e.target.value === 'seamountOn') {
-          map.setPaintProperty('seamountsPointsLayer', 'circle-radius', 7);
+          map.setPaintProperty('seamountsPointsLayer', 'circle-radius', mobile ? featureSizeMobile : featureSize);
           map.setPaintProperty('seamountsPointsLayer', 'circle-opacity', 1);
           map.setPaintProperty('seamountsLinesLayer', 'line-width', 1);
-          map.setPaintProperty('seamountsLinesLayer', 'line-width', 7);
+          map.setPaintProperty('seamountsLinesLayer', 'line-width', mobile ? featureSizeMobile : featureSize);
         } else {
           map.setPaintProperty('seamountsPointsLayer', 'circle-radius', 0);
           map.setPaintProperty('seamountsPointsLayer', 'circle-opacity', 0);
@@ -804,10 +774,10 @@
       });
 
       document.getElementById('trenchesFilter').addEventListener('change', function (e) {
-        popup.remove();
+        if (popup) { popup.remove(); }
         if (e.target.value === 'trenchesOn') {
           map.setPaintProperty('trenchesLinesLayer', 'line-width', 1);
-          map.setPaintProperty('trenchesLinesLayer', 'line-width', 7);
+          map.setPaintProperty('trenchesLinesLayer', 'line-width', mobile ? featureSizeMobile : featureSize);
         } else {
           map.setPaintProperty('trenchesLinesLayer', 'line-width', 0);
           map.setPaintProperty('trenchesLinesLayer', 'line-width', 0);
@@ -815,13 +785,13 @@
       });
 
       document.getElementById('ridgesFilter').addEventListener('change', function (e) {
-        popup.remove();
+        if (popup) { popup.remove(); }
         if (e.target.value === 'ridgesOn') {
-          map.setPaintProperty('ridgesPointsLayer', 'circle-radius', 7);
+          map.setPaintProperty('ridgesPointsLayer', 'circle-radius', mobile ? featureSizeMobile : featureSize);
           map.setPaintProperty('ridgesPointsLayer', 'circle-opacity', 1);
 
           map.setPaintProperty('ridgesLinesLayer', 'line-width', 1);
-          map.setPaintProperty('ridgesLinesLayer', 'line-width', 7);
+          map.setPaintProperty('ridgesLinesLayer', 'line-width', mobile ? featureSizeMobile : featureSize);
         } else {
           map.setPaintProperty('ridgesPointsLayer', 'circle-radius', 0);
           map.setPaintProperty('ridgesPointsLayer', 'circle-opacity', 0);
@@ -832,10 +802,10 @@
       });
 
       document.getElementById('canyonsFilter').addEventListener('change', function (e) {
-        popup.remove();
+        if (popup) { popup.remove(); }
         if (e.target.value === 'canyonsOn') {
           map.setPaintProperty('canyonsLinesLayer', 'line-width', 1);
-          map.setPaintProperty('canyonsLinesLayer', 'line-width', 7);
+          map.setPaintProperty('canyonsLinesLayer', 'line-width', mobile ? featureSizeMobile : featureSize);
         } else {
 
           map.setPaintProperty('canyonsLinesLayer', 'line-width', 0);
@@ -858,8 +828,7 @@
           var depth = depthBool ? e.features[0].properties.depth : '';
           var biodiversity = biodiversityBool ? e.features[0].properties.biodiversity : '';
           var description = e.features[0].properties.description;
-
-          let popupContent = ''
+          let popupContent = '';
 
           if (className === 'seamount') {
             popupContent = `<h3 class="popupTitle">${name}</h3>
@@ -870,7 +839,7 @@
             ${description !== 'not known' && description !== '' && description !== 'N/A' && description !== 'undefined' ? "<h4><b> Description: </b>" + description + "</h4>" : ""}`
           } else {
             popupContent = `<h3 class="popupTitle">${name}</h3>
-            ${length !== 'not known' && length !== '' && length !== 'N/A' && length !== 'undefined' ? "<h4><b> Length: </b>" + length + "</h4>" : ""}
+            ${length1 !== 'not known' && length1 !== '' && length1 !== 'N/A' && length1 !== 'undefined' ? "<h4><b> Length: </b>" + length1 + "</h4>" : ""}
             ${height !== 'not known' && height !== '' && height !== 'N/A' && height !== 'undefined' ? "<h4><b> Height: </b>" + height + "</h4>" : ""}
             ${period_of_formation !== 'not known' && period_of_formation !== '' && period_of_formation !== 'N/A' && period_of_formation !== 'undefined' ? "<h4><b> Period of formation: </b>" + period_of_formation + "</h4>" : ""}
             ${description !== 'not known' && description !== '' && description !== 'N/A' && description !== 'undefined' ? "<h4><b> Description: </b>" + description + "</h4>" : ""}`
@@ -889,11 +858,6 @@
       // clickPointLayer('trenchLayer', 'trench', false, true, true);
       clickPointLayer('ridgesPointsLayer', 'ridge', true, true, false); //layer, className, heightBool, depthBool, biodiversityBool
 
-
-      // clickPointLayer('canyonsPointLayer', 'canyon', true, false, false);
-
-
-      //addLineData(trenches_lines, trenchesLinesData, false, true, true); // originalData, newData, height, depth, biodiversity
 
       function clickLineLayer(layer, className, heightBool, depthBool, biodiversityBool, period) {
         map.on('click', layer, function (e) {

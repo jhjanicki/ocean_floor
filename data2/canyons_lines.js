@@ -302,8 +302,8 @@ const canyons_lines = [
 	   "Height":"Walls up to 1,400m high",
 	   "Depth":"N/A",
 	   "Length":"400km",
-	   "Description":"The world's longest known submarine canyon, it is one of many in the Bering Sea, including three others that are exceptionally large and long: the Pribilof, Zhemchug and Navarin. It has a volume of 4,300 cubic km, roughly half that of the Zhemchug Canyon. It is confined to the southeast by the Aleutian Islands.",
-	   "Biodiversity":"Home to invaluable fisheries such as Alaska pollock, salmon and king crab. Seabirds, like albatross and kittiwakes, and marine mammals like orcas, walrus and fur seals also live in the region.",
+	   "Description":"It is one of four exceptionally large and long canyons in the Bering Sea, the others being the Pribilof, Zhemchug and Navarin. It has a volume of 4,300 cubic km, 25% less than the Zhemchug Canyon. It is confined to the southeast by the Aleutian Islands.",
+	   "Biodiversity":"N/A",
 	   "Changes_made":"Period of formation edited; Height edited; Depth edited; Description edited"
 	},
 	{
@@ -504,9 +504,9 @@ const canyons_lines = [
 	   "Period_of_formation":"N/A",
 	   "Height":"Walls up to 2,600m high",
 	   "Depth":"N/A",
-	   "Length":"N/A",
-	   "Description":"Located in the middle of the Bering Sea, its depth and width make it the largest submarine canyon in the world with a volume of 8,500 cubic km. It is one of four exceptionally large and long canyons in the sea, the others being the Bering, Pribilof and Navarin.",
-	   "Biodiversity":"An important habitat for many species, including seabirds such as short-tailed albatross; mammals such as northern fur seals, dolphins and many species of whales; and invertebrates such as bubblegum coral, bamboo coral, soft coral, glass sponge, snow crab and bairdi crab.",
+	   "Length":"240km",
+	   "Description":"Located in the middle of the Bering Sea, its depth and width make it the largest submarine canyon in the world with a volume of 5,800 cubic km (Carlson and Karl, 1988). It is one of four exceptionally large and long canyons in the sea, the others being the Bering, Pribilof and Navarin.",
+	   "Biodiversity":"N/A",
 	   "Changes_made":"Coordinates corrected - there are two lines, not one; Height edited; Depth edited; Description edited;"
 	},
 	{
@@ -565,9 +565,8 @@ const canyons_lines = [
 	   "Period_of_formation":"N/A",
 	   "Height":"Walls up to 2,600m high",
 	   "Depth":"N/A",
-	   "Length":"N/A",
-	   "Description":"Located in the middle of the Bering Sea, its depth and width make it the largest submarine canyon in the world with a volume of 8,500 cubic km. It is one of four exceptionally large and long canyons in the sea, the others being the Bering, Pribilof and Navarin.",
-	   "Biodiversity":"An important habitat for many species, including seabirds such as short-tailed albatross; mammals such as northern fur seals, dolphins and many species of whales; and invertebrates such as bubblegum coral, bamboo coral, soft coral, glass sponge, snow crab and bairdi crab.",
+	   "Length":"240km",
+	   "Description":"Located in the middle of the Bering Sea, its depth and width make it the largest submarine canyon in the world with a volume of 5,800 cubic km (Carlson and Karl, 1988). It is one of four exceptionally large and long canyons in the sea, the others being the Bering, Pribilof and Navarin.",
 	   "Changes_made":"Coordinates corrected - there are two lines, not one; Height edited; Depth edited; Description edited;"
 	}
  ]

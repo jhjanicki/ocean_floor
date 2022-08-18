@@ -100,7 +100,7 @@ const seamounts_lines = [
       "Name":"Hawaiian-Emperor Seamount Chain",
       "Type":"three lines",
       "Location_references":"https://geohack.toolforge.org/geohack.php?pagename=Hawaiian%E2%80%93Emperor_seamount_chain&params=19_49_14_N_155_28_05_W_type:mountain_dim:3100km",
-      "Coordinates":[[167.5,51.5],[168.8774,48.3828],[169.44541,46.04551],[169.99866,45.6429],[170.29725,43.66181],[170.5519,41.1314],[170.7843,37.93357],[171.11558,36.94399],[171.66846,35.27534],[171.62082,33.24746],[173,32]],
+      "Coordinates":[[167.5,51.5],[168.8774,48.3828],[169.44541,46.04551],[169.99866, 45.6429],[170.29725,43.66181],[170.5519,41.1314],[170.7843,37.93357],[171.11558,36.94399],[171.66846,35.27534],[171.62082,33.24746],[173,32]],
       "Period_of_formation":"81 million years ago",
       "Height":"Its highest peak is Mauna Kea, which rises 9,966m from the seabed",
       "Length":"6,200km",
@@ -112,24 +112,14 @@ const seamounts_lines = [
 	"Name":"Hawaiian-Emperor Seamount Chain",
 	"Type":"three lines",
 	"Location_references":"https://geohack.toolforge.org/geohack.php?pagename=Hawaiian%E2%80%93Emperor_seamount_chain&params=19_49_14_N_155_28_05_W_type:mountain_dim:3100km",
-      "Coordinates":[],
+      "Coordinates":[[-160,22],[-161.7393,23.0039],[-164.44102,23.423],[-165.5607,23.8853],[-166.28829,23.82208],[-168.2903,25.1651],[-171.69972,25.57504],[-173.92,26.1238],[-175.8427,27.0229],[-177.7414,28.1082],[-179.09372,28.73111],[-180,28.96667]],
       "Period_of_formation":"81 million years ago",
       "Height":"Its highest peak is Mauna Kea, which rises 9,966m from the seabed",
       "Length":"6,200km",
       "Description":"A vast undersea mountain range formed by the Hawaiian volcanic islands and the Emperor Seamounts. This topographically diverse region includes not only seamounts and islands, but also atolls, shallows and banks.",
       "Biodiversity":"Numerous species of tuna, whale and seabird can be found in the area. On the mounts themselves, forests of cold-water corals and sponges host a diversity of fish species and invertebrates."
    },
-   {
-	"Name":"Hawaiian-Emperor Seamount Chain",
-	"Type":"three lines",
-	"Location_references":"https://geohack.toolforge.org/geohack.php?pagename=Hawaiian%E2%80%93Emperor_seamount_chain&params=19_49_14_N_155_28_05_W_type:mountain_dim:3100km",
-      "Coordinates":[[160,22],[161.7393,23.0039],[164.44102,23.423],[165.5607,23.8853],[166.28829,23.82208],[168.2903,25.1651],[171.69972,25.57504],[173.92,26.1238],[175.8427,27.0229],[177.7414,28.1082],[179.09372,28.73111],[180,28.96667]],
-      "Period_of_formation":"81 million years ago",
-      "Height":"Its highest peak is Mauna Kea, which rises 9,966m from the seabed",
-      "Length":"6,200km",
-      "Description":"A vast undersea mountain range formed by the Hawaiian volcanic islands and the Emperor Seamounts. This topographically diverse region includes not only seamounts and islands, but also atolls, shallows and banks.",
-      "Biodiversity":"Numerous species of tuna, whale and seabird can be found in the area. On the mounts themselves, forests of cold-water corals and sponges host a diversity of fish species and invertebrates."
-   },
+
    {
 	"Name":"Hawaiian-Emperor Seamount Chain",
 	"Type":"three lines",

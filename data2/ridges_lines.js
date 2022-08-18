@@ -5,7 +5,7 @@ const ridges_lines = [
 	   "Location_references":"http://marineregions.org/mrgid/7592",
 	   "Coordinates":[
 		  [
-			 20,
+			 -20,
 			 -60.25
 		  ],
 		  [
@@ -264,7 +264,7 @@ const ridges_lines = [
 	   "Name":"Pacific-Antarctic Ridge",
 	   "Type":"line",
 	   "Location_references":"https://marineregions.org/gazetteer.php?p=details&id=7200",
-	   "Coordinates":[[161,-61.5],[165.1284,-62.0578],[168.8022,-62.7842],[171.8276,-63.3478],[175.1771,-64.3491],[177.7163,-65.0883],[180,-65.48314],[-180,-65.48327],[-167.09078,-64.52724],[-156.99406,-61.81337],[-147.7747,-58.06],[-142.2371,-56.2716],[-137.1486,-55.1735],[-130,-54.5]],
+	   "Coordinates":[[162,-61.5],[165.1284,-62.0578],[168.8022,-62.7842],[171.8276,-63.3478],[175.1771,-64.3491],[177.7163,-65.0883],[180,-65.48314]],
 	   "Period_of_formation":"N/A",
 	   "Height":"N/A",
 	   "Depth":"N/A",
@@ -276,7 +276,7 @@ const ridges_lines = [
 		"Name":"Pacific-Antarctic Ridge",
 		"Type":"line",
 		"Location_references":"https://marineregions.org/gazetteer.php?p=details&id=7200",
-		"Coordinates":[[161,-61.5],[165.1284,-62.0578],[168.8022,-62.7842],[171.8276,-63.3478],[175.1771,-64.3491],[177.7163,-65.0883],[180,-65.48314],[-180,-65.48327],[-167.09078,-64.52724],[-156.99406,-61.81337],[-147.7747,-58.06],[-142.2371,-56.2716],[-137.1486,-55.1735],[-130,-54.5]],
+		"Coordinates":[[-180,-65.48327],[-167.09078,-64.52724],[-156.99406,-61.81337],[-147.7747,-58.06],[-142.2371,-56.2716],[-137.1486,-55.1735],[-130,-54.5]],
 		"Period_of_formation":"N/A",
 		"Height":"N/A",
 		"Depth":"N/A",
@@ -458,7 +458,7 @@ const ridges_lines = [
 	   "Height":"About 3,000m from the seabed",
 	   "Depth":"Average of 2,500m",
 	   "Length":"16,000km",
-	   "Description":"Running down the centre of the Atlantic Ocean, it is mostly underwater, with only some parts rising above sea level, such as in Iceland. In the North Atlantic, it separates the North American Plate from the Eurasian Plate and the African Plate. In the South Atlantic, it separates the African and South American plates.",
+	   "Description":"Running down the centre of the Atlantic Ocean, it is mostly underwater, with only some parts rising above sea level. In the North Atlantic, it separates the North American Plate from the Eurasian Plate and the African Plate. In the South Atlantic, it separates the African and South American plates.",
 	   "Changes_made":"Coordinates corrected"
 	}
  ]
