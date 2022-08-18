@@ -598,8 +598,6 @@
       ]
     };
 
-
-
     if (mobile) {
 
       map = new mapboxgl.Map({
@@ -735,18 +733,13 @@
 
       addPointData(seamounts_points, seamountsPointsData, true, false, true); //originalData, newData, height, depth, biodiversity
       addPointData(ridges_points, ridgesPointsData, true, true, false);
-
       addLineData(trenches_lines, trenchesLinesData, false, true, true); // originalData, newData, height, depth, biodiversity
-      addLineData(seamounts_lines, seamountsLinesData, true, false, true); // originalData, newData, height, depth, biodiversity
-      addLineData(canyons_lines, canyonsLinesData, true, true, true); // originalData, newData, height, depth, biodiversity
+      addLineData(seamounts_lines, seamountsLinesData, true, false, true);
+      addLineData(canyons_lines, canyonsLinesData, true, true, true);
       addLineData(ridges_lines, ridgesLinesData, true, true, false);
-
-
 
       addPointLayer('seamountsPointsLayer', seamountsPointsData, "#189B68");
       addPointLayer('ridgesPointsLayer', ridgesPointsData, "#6547a4");
-
-
 
       addLineLayer('trenchesLinesLayer', trenchesLinesData, "#E7685A");
       addLineLayer('seamountsLinesLayer', seamountsLinesData, "#189B68");
@@ -851,7 +844,6 @@
       }
 
       clickPointLayer('seamountsPointsLayer', 'seamount', true, false, true);
-      // clickPointLayer('trenchLayer', 'trench', false, true, true);
       clickPointLayer('ridgesPointsLayer', 'ridge', true, true, false); //layer, className, heightBool, depthBool, biodiversityBool
 
 
