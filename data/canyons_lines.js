@@ -303,7 +303,7 @@ const canyons_lines = [
 	   "Depth":"N/A",
 	   "Length":"400km",
 	   "Description":"It is one of four exceptionally large and long canyons in the Bering Sea, the others being the Pribilof, Zhemchug and Navarin. It has a volume of 4,300 cubic km, 25% less than the Zhemchug Canyon. It is confined to the southeast by the Aleutian Islands.",
-	   "Biodiversity":"N/A",
+	   "Biodiversity":"Home to invaluable fisheries such as Alaska pollock, salmon and king crab. Seabirds, like albatross and kittiwakes, and marine mammals like orcas, walrus and fur seals also live in the region.",
 	   "Changes_made":"Period of formation edited; Height edited; Depth edited; Description edited"
 	},
 	{
@@ -567,6 +567,7 @@ const canyons_lines = [
 	   "Depth":"N/A",
 	   "Length":"240km",
 	   "Description":"Located in the middle of the Bering Sea, its depth and width make it the largest submarine canyon in the world with a volume of 5,800 cubic km (Carlson and Karl, 1988). It is one of four exceptionally large and long canyons in the sea, the others being the Bering, Pribilof and Navarin.",
+	   "Biodiversity":"N/A",
 	   "Changes_made":"Coordinates corrected - there are two lines, not one; Height edited; Depth edited; Description edited;"
 	}
  ]
